@@ -8,11 +8,12 @@ import githubLogo from "../assets/descarga.png";
 const Home = () => {
   return (
       <div>
+        <div>
           <OpenLink
               redirectURL="https://vite.dev"
               logoImage={viteLogo}
           />
-<OpenLink
+            <OpenLink
               redirectURL="https://react.dev"
               logoImage={reactLogo}
           />
@@ -20,9 +21,11 @@ const Home = () => {
               redirectURL="https://github.com/svigabriel/frontendReactjs"
               logoImage={githubLogo}
           />
+        </div>
           <Body />
           <Footer />
-      </div>
+        </div>
+      
   );
 }
 export default Home;
