@@ -4,7 +4,7 @@ import Footer from '../components/home/footer.jsx';
 
 import viteLogo from "../assets/vite.svg";
 import reactLogo from "../assets/react.svg";
-import githubLogo from "../assets/descarga.png";
+import githubLogo from "../assets/github.jpeg";
 const Home = () => {
   return (
       <div>
