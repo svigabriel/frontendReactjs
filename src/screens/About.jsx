@@ -11,18 +11,28 @@ const About = () => {
 
     const count = useSelector((state) => state.product.initialValue);
  
-    //const product = useSelector((state) => state.product.dataProduct)
+    const producto = useSelector((state) => state.product.dataProduct)
     return (
         <>
             <p>Component {nameComponent} </p>
-            
-            <button onClick={() => {setNameComponent('Curso de React')}} />
-<button onClick={() => {setNameComponent('Curso de React')}}>Press</button>
+            <button onClick={() => {setNameComponent('Curso de React')}}>Press</button>
+            <br />
             <span>Valor de InitialValue es { count }</span>
             <br />
+            <br />
+            <span>Valor de Dataproduct es</span>
+            <ul>
+                { producto.map(p =>(
+                    <li key={p.category}>{p.category}{' '}{p.price}{' '}{p.stocked}{' '}{p.name}</li>
+                ))}
+ 
+            </ul>
+           
             
+      
         </>
     );
 }
 export default About;
 
+// <span>Valor de Dataproduct es { producto }</span>

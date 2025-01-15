@@ -21,10 +21,13 @@ export const productSlice = createSlice({
     setInitialValue: (state, payload) =>{
         state.initialValue = payload
     },
+    setdataProduct: (state, payload) =>{
+        state.dataProduct = payload
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setInitialValue } = productSlice.actions
+export const { setInitialValue, setdataProduct } = productSlice.actions
 
 export default productSlice.reducer
