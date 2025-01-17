@@ -1,6 +1,6 @@
 //import FormLogin from "../components/Forms/FormLogin.jsx";
 //import FormLoginwithHook from "../components/Forms/FormLoginwithHook.jsx";
-import FormLoginWithMotion from "../Components/Forms/FormLoginWithMotion.jsx";
+import FormLoginWithMotion from "../components/Forms/FormLoginWithMotion.jsx";
 
 const Login = () => {
     return(
