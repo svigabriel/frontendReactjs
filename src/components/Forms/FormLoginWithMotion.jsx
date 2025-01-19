@@ -2,23 +2,45 @@ import { useState} from "react";
 import { motion } from "motion/react"
 import useForm from "../Hooks/useForm.js";
 import ModalInfo from "../Modals/ModalInfo.jsx";  
+import { initialState } from "../../store/features/Form/FormSlice.js"; 
+import { useDispatch } from "react-redux";
+import { setUsername } from "../../store/features/Form/FormSlice.js";
+import { useSelector } from 'react-redux'
+
 
 // eslint-disable-next-line react/prop-types
 const FormWithMotionAndHook = ({titleForm}) => {
-    const {formData, handleChange} = useForm({
-        username: '',
-        email: ''
-    });
+    const {formData, handleChange,resetForm} = useForm(initialState); 
+    
     const [showModal, setShowModal] = useState(false);
+    const [modalType, setModalType] = useState("succes");
+    const passwordinicial = useSelector((state) => state.form.password);
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setShowModal(true);
-        console.log('datos del formulario', formData);
-    };
+         //debugger;
+        if (passwordinicial === formData.password)
+        {
+            console.log('datos del formulario', formData);
+            setModalType("success");
+            setShowModal(true);
+            dispatch(setUsername({
+                username: formData.username,
+                email: formData.email,
+            }))
+        }
+        else{
+            console.log('passwordinicial', passwordinicial);
+            console.log('passwordingresado', formData.password);
+            setModalType("warning");
+            setShowModal(true);
+        }
 
+    };
     const onCloseModalInfo = () => {
         setShowModal(false); 
+        resetForm();  // Resetear el formulario al cerrar el modal
     };
 
     return (
@@ -27,18 +49,20 @@ const FormWithMotionAndHook = ({titleForm}) => {
             animate={{opacity: 1}}
             exit={{opacity: 0}}
             transition={{duration: 0.5}}
-        >
-            <ModalInfo visible={showModal} 
-            message = "Formulario enviado!!"
-            onClose ={onCloseModalInfo} 
-            />
+        >  
+                <ModalInfo visible={showModal} 
+                message =   {modalType === "success" ?'Bienvenid@  ' + formData.username : "Username/Password incorrectos"}
+                type = {modalType}
+                onClose ={onCloseModalInfo} 
+                />
+           
             <form onSubmit={handleSubmit}>
                 <motion.div
                     initial={{x: -100}}
                     animate={{x: 0}}
                     transition={{duration: 0.5}}
                 >
-                    <h3>{titleForm}</h3>
+                    <h2>{titleForm}</h2>
                 </motion.div>
                 <motion.div
                     initial={{x: -100}}
@@ -46,16 +70,20 @@ const FormWithMotionAndHook = ({titleForm}) => {
                     transition={{duration: 0.5}}
                 >
                     <div>
-                        <label>
-                            Username:
+                        <table>
+                            <tr>
+                                <td>
+                                <label style={{ marginLeft: "15px" }}>Module:</label>
+                                </td>
+                        <td>        
                             <input
-                                type="text"
-                                name="username"
-                                value={formData.username}
-                                onChange={handleChange}
-                                required
+                               type="text"
+                                name="module"
+                                value={formData.module}  readOnly disabled
                             />
-                        </label>
+                            </td> 
+                         </tr>
+                        </table>
                     </div>
                 </motion.div>
                 <motion.div
@@ -64,24 +92,73 @@ const FormWithMotionAndHook = ({titleForm}) => {
                     transition={{duration: 0.5}}
                 >
                     <div>
-                        <label>
-                            Email:
-                            <input
+                        <table>
+                            <tr>
+                                <td>
+                                <label style={{ marginLeft: "2px" }}> Username:</label>
+                                </td>
+                                <td>
+                                    <input
+                                     type="text"
+                                    name="username"
+                                    value={formData.username} onChange={handleChange} required
+                            />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </motion.div>
+                <motion.div
+                    initial={{x: -100}}
+                    animate={{x: 0}}
+                    transition={{duration: 0.5}}
+                >
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                <label style={{ marginLeft: "35px" }}> Email:</label>
+                                </td>
+                                <td>
+                                <input
                                 type="email"
                                 name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
+                                value={formData.email} onChange={handleChange} required
                             />
-                        </label>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </motion.div>
+                <motion.div
+                    initial={{x: -100}}
+                    animate={{x: 0}}
+                    transition={{duration: 0.5}}
+                >
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                <label style={{ marginLeft: "10px" }}> Password:</label>
+                                </td>
+                                <td>
+                                <input
+                                type="password"
+                                name="password"
+                                value={formData.password} onChange={handleChange} required
+                            />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </motion.div>
+                <br></br>
                 <motion.div
                     initial={{y: 100}}
                     animate={{y: 0}}
                     transition={{duration: 0.5}}
                 >
-                    <button type="submit">Enviar</button>
+                    <button className="btn_login" type="submit">Login</button>
                 </motion.div>
             </form>
         </motion.div>

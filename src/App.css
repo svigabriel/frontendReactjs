@@ -84,6 +84,8 @@
   max-width: 500px;
   width: 90%;
   text-align: center;
+  font-size: 14px;
+  font-weight: bold;
   position: relative;
 }
 
@@ -97,3 +99,20 @@
   font-size: 1.5rem;
   cursor: pointer;
 }
+.btn_login{
+  padding: 10px 30px;
+  background: #4CAF50;;
+  border: none;
+  color: #d9d9e8;
+  font-size: "16px";
+  cursor: pointer;
+}
+.modal-success {
+  background: #d1f4d9; 
+}
+
+.modal-warning {
+  background: #e8adb3; 
+}
+
+
