@@ -3,12 +3,8 @@ import { motion } from "motion/react"
 import useForm from "../Hooks/useForm.js";
 import ModalInfo from "../Modals/ModalInfo.jsx";
 import { initialState } from "../../store/features/Form/FormSlice.js";
-import { useDispatch } from "react-redux";
-import { setUsername } from "../../store/features/Form/FormSlice.js";
-import { setEmail } from "../../store/features/Form/FormSlice.js";
-import { setPassword } from "../../store/features/Form/FormSlice.js";
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from "react-redux";
+import { setUsername, setEmail } from "../../store/features/Form/FormSlice.js";
 
 // eslint-disable-next-line react/prop-types
 const FormWithMotionAndHook = ({ titleForm }) => {
@@ -31,6 +27,8 @@ const FormWithMotionAndHook = ({ titleForm }) => {
         else {
             console.log('passwordinicial', passwordinicial);
             console.log('passwordingresado', formData.password);
+            dispatch(setUsername( ' '));
+            dispatch(setEmail( ' '));
             setModalType("warning");
             setShowModal(true);
         }

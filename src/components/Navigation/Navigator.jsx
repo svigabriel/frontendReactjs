@@ -12,10 +12,12 @@ const Navigator = () => {
             <Link to="/think" className="nav-link">Think</Link>
             <Link to="/product" className="nav-link">Product</Link>
             <Link to="/about" className="nav-link">About</Link>
-            <Link to="/" className="nav-link">{username}||{email}</Link>
+            
+            <span className="nav-username">Bienvenid@ {username}||{email} </span>
            
             
         </nav>
     );
 }
 export default Navigator;
+
