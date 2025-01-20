@@ -1,5 +1,9 @@
 import { Link } from "react-router";
+import { useSelector } from 'react-redux'
+
+
 const Navigator = () => {
+    const { username, email} = useSelector((state) => state.form);
     return (
         <nav className="navbar">
             <Link to="/" className="nav-link">Home</Link>
@@ -8,6 +12,9 @@ const Navigator = () => {
             <Link to="/think" className="nav-link">Think</Link>
             <Link to="/product" className="nav-link">Product</Link>
             <Link to="/about" className="nav-link">About</Link>
+            <Link to="/" className="nav-link">{username}||{email}</Link>
+           
+            
         </nav>
     );
 }

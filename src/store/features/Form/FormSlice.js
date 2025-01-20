@@ -27,5 +27,5 @@ const formSlice = createSlice({
 });
 
 export const { setModule, setUsername, setEmail, setPassword } = formSlice.actions;
-export default formSlice.reducer;
 export { initialState };
+export default formSlice.reducer;
