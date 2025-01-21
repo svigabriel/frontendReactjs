@@ -5,7 +5,7 @@ import FormLoginWithMotion from "../components/Forms/FormLoginWithMotion.jsx";
 const Login = () => {
     return(
         <>
-            <FormLoginWithMotion titleForm={"Welcome to Full stack program"}/>
+            <FormLoginWithMotion titleForm={"Welcome to Full Stack Program"}/>
         </>
     )
 }

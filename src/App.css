@@ -62,8 +62,8 @@
 .nav-username {
   text-decoration: none;
   color: rgb(33, 15, 105);
-  margin-right: 1rem;
-  text-align: justify;
+  margin-left: 5rem;
+  margin-right: -25rem;
 }
 .nav-link:hover {
   color: #5378c3;
@@ -106,7 +106,7 @@
   cursor: pointer;
 }
 .btn_login{
-  padding: 10px 30px;
+  padding: 10px 50px;
   background: #4CAF50;;
   border: none;
   color: #d9d9e8;
@@ -121,4 +121,13 @@
   background: #e8adb3; 
 }
 
-
+.btn_show {
+  position: absolute;
+  padding: 8px 30px;
+  background-color: blue;
+  border: none;
+  color: #f1f1f5;
+  font-size: 12px;
+  cursor: pointer;
+  
+}

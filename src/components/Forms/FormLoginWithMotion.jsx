@@ -12,29 +12,33 @@ const FormWithMotionAndHook = ({ titleForm }) => {
     const { formData, handleChange, resetForm } = useForm(initialState);
     const [showModal, setShowModal] = useState(false);
     const [modalType, setModalType] = useState("succes");
-    const passwordinicial = useSelector((state) => state.form.password);
+    const [showPassword, setShowPassword] = useState(false);
+    const passwordinicio = useSelector((state) => state.form.password);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         //debugger;
-        if (passwordinicial === formData.password) {
-            dispatch(setUsername( formData.username));
-            dispatch(setEmail( formData.email));
+        if (passwordinicio === formData.password) {
+            dispatch(setUsername(formData.username));
+            dispatch(setEmail(formData.email));
             console.log('datos del formulario', formData);
             setModalType("success");
             setShowModal(true);
         }
         else {
-            console.log('passwordinicial', passwordinicial);
-            console.log('passwordingresado', formData.password);
-            dispatch(setUsername( ' '));
-            dispatch(setEmail( ' '));
+            console.log('password ingresado', formData.password);
+            console.log('password de inicio', passwordinicio);   
+            dispatch(setUsername(' '));
+            dispatch(setEmail(' '));
             setModalType("warning");
             setShowModal(true);
         }
     };
+    const togglePasswordVisibility = () => {
+        setShowPassword ((prev)=> !prev); // Cambio de visibilidad del estato
+    };
 
-       
+
     const onCloseModalInfo = () => {
         setShowModal(false);
         resetForm();  // Resetear el formulario al cerrar el modal
@@ -61,97 +65,60 @@ const FormWithMotionAndHook = ({ titleForm }) => {
                 >
                     <h2>{titleForm}</h2>
                 </motion.div>
-                <table>
-
-                    <motion.div
-                        initial={{ x: -100 }}
-                        animate={{ x: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <div>
-
-                            <tr>
-                                <td>
-                                    <label style={{ marginLeft: "15px" }}>Module:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        name="module"
-                                        value={formData.module} readOnly disabled
-                                    />
-                                </td>
-                            </tr>
-
-                        </div>
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: -100 }}
-                        animate={{ x: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <div>
-
-                            <tr>
-                                <td>
-                                    <label style={{ marginLeft: "2px" }}> Username:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        name="username"
-                                        value={formData.username} onChange={handleChange} required
-                                    />
-                                </td>
-                            </tr>
-
-                        </div>
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: -100 }}
-                        animate={{ x: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <div>
-
-                            <tr>
-                                <td>
-                                    <label style={{ marginLeft: "35px" }}> Email:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email} onChange={handleChange} required
-                                    />
-                                </td>
-                            </tr>
-
-                        </div>
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: -100 }}
-                        animate={{ x: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <div>
-
-                            <tr>
-                                <td>
-                                    <label style={{ marginLeft: "10px" }}> Password:</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        value={formData.password} onChange={handleChange} required
-                                    />
-                                </td>
-                            </tr>
-
-                        </div>
-                    </motion.div>
-                </table>
+                <motion.div
+                    initial={{ x: -100 }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <label style={{ marginLeft: "15px" }}>Module:
+                        <input
+                            style= {{width: "60%",marginLeft: "10px"}}
+                            type="text"
+                            name="module"
+                            value={formData.module} readOnly disabled
+                        />
+                    </label>
+                </motion.div>
+                <motion.div
+                    initial={{ x: -100 }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <label style={{ marginLeft: "2px" }}> Username:
+                        <input style= {{width: "60%",marginLeft: "10px"}}
+                            type="text"
+                            name="username"
+                            value={formData.username} onChange={handleChange} required
+                        />
+                    </label>
+                </motion.div>
+                <motion.div
+                    initial={{ x: -100 }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <label style={{ marginLeft: "35px" }}> Email:
+                        <input style= {{width: "60%",marginLeft: "10px"}}
+                            type="email"
+                            name="email"
+                            value={formData.email} onChange={handleChange} required
+                        />
+                    </label>
+                </motion.div>
+                <motion.div
+                    initial={{ x: -100 }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <label style={{ marginLeft: "10px" }}> Password:
+                        <input style= {{width: "60%",marginLeft: "10px"}}
+                            type={showPassword ? "text" : "password"} 
+                            name="password"
+                            value={formData.password} onChange={handleChange} required
+                        />
+                        <button className="btn_show"  type="button" onClick={togglePasswordVisibility}>{showPassword ? "Show" : "Hide"} </button>
+                    </label>
+                </motion.div>
                 <br></br>
                 <motion.div
                     initial={{ y: 100 }}
