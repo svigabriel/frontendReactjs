@@ -1,11 +1,11 @@
 import { motion } from "motion/react"
 
 // eslint-disable-next-line react/prop-types
-const ModalLogout = ({ visible, message , onClose }) => {
+const ModalLogout = ({ visible,  onClose, onLogout }) => {
     if (!visible) {
         return null;
     }
-    console.log("ModalLogout");
+    console.log("Ingreso al ModalLogout");
 return (
         <div className="modal-overlay">
             <motion.div
@@ -15,7 +15,8 @@ return (
                 transition={{duration: 0.5}}
             >
                 <div>
-                    <p>{message}</p>
+                    <p>¿Esta seguro de cerrar la sesion? 
+                    <button onClick={onLogout}>Presione el boton para salir</button></p>
                 </div>
                 <button
                     className="close-btn-success"
@@ -24,6 +25,5 @@ return (
                 </button>
             </motion.div>
         </div>
-    );
-};
+    );};
 export default ModalLogout;

@@ -23,9 +23,22 @@ const formSlice = createSlice({
         setPassword: (state, action) => {
             state.password = action.payload;
         },
+        resetForm: (state, action) => {
+            console.log(" payload para resetform", action.payload); 
+            if (action.payload === "logout") {
+                const resetState = {
+                    module: '',
+                    username: '',
+                    email: '',
+                    password: '',
+                };
+                return resetState;
+            }
+            return { ...initialState };
+        },
     },
 });
 
-export const { setModule, setUsername, setEmail, setPassword } = formSlice.actions;
+export const { setModule, setUsername, setEmail, setPassword, resetForm  } = formSlice.actions;
 export { initialState };
 export default formSlice.reducer;

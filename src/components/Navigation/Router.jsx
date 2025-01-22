@@ -1,9 +1,10 @@
-import Home from "../../screens/Home.jsx";
+import Home from "../../screens/LandingPage.jsx";
 import Product from "../../screens/Product.jsx";
 import About from "../../screens/About.jsx";
 import Think from "../../screens/Think.jsx";
 import Login from "../../screens/Login.jsx";
 import Counter from "../Counter/Counter.jsx";
+
 
 import {Routes, Route} from "react-router";
 

@@ -1,20 +1,20 @@
 import { Link } from "react-router";
 import { useState } from "react";
-import { useSelector } from 'react-redux'
-import ModalLogout from "../Modals/ModalLogout.jsx";
+import { useSelector, useDispatch } from 'react-redux'
+import ModalLogout from "../Modals/ModalLogout.jsx"
+import { resetForm} from "../../store/features/Form/FormSlice.js"
 
 const Navigator = () => {
-    const [showModal, setShowModal] = useState(false);
-    const { username, email} = useSelector((state) => state.form);
-    
-    const Logout = () => {
-        console.log("llega aqui logout");
-        <ModalLogout visible={showModal}
-        message ="Deseas salir??"
-        onClose={onCloseModalLogout}/>
-    };
-    const onCloseModalLogout = () => {
-        setShowModal(false);  
+   
+    const { module, username, email, password }= useSelector(state => state.form);
+    const dispatch = useDispatch();
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const handleLogout = () => {
+        console.log("valor de modulo",module);
+        console.log("valor de password",password);
+        dispatch(resetForm("logout"));
+        setIsModalVisible(false);
     };
     return (
         
@@ -26,14 +26,17 @@ const Navigator = () => {
             <Link to="/product" className="nav-link">Product</Link>
             <Link to="/about" className="nav-link">About</Link>
             
-            <span className="nav-username">Bienvenid@ {username}||{email} -
-             <button className="btn_show"  type="button" 
-             onClick={Logout}>Logout</button></span>
-           
-            
+            <span className="nav-username">Bienvenid@ {username}||{email} 
+            <button className="btn_show"  type="button" 
+                onClick={() => setIsModalVisible(true)} >
+                    Logout
+            </button> </span>
+            <ModalLogout
+                visible={isModalVisible}
+                onClose={() => setIsModalVisible(false)}
+                onLogout={handleLogout}
+            />    
         </nav>
-
-                        
                 
     );
 }
